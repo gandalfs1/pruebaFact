@@ -14,5 +14,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Conexion conexion = new Conexion();
+
+        conexion.getInstanceServer(MainActivity.this,2022);
+
     }
 }
