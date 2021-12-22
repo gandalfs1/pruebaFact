@@ -1,9 +1,10 @@
-package com.example.pruebafact;
+package com.example.pruebafact.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.pruebafact.R;
 import com.example.pruebafact.conexion.Conexion;
 
 public class MainActivity extends AppCompatActivity {
