@@ -26,12 +26,24 @@ public class DbHelper extends SQLiteOpenHelper {
                 PROTAGONISTA + " TEXT , " +
                 DIRECTOR + " TEXT , " +
                 PRODUCTOR + " TEXT , " +
-                TECNOLOGIA + " TEXT);");
+                TECNOLOGIA + " TEXT ," +
+                IMAGEN + " TEXT);");
+
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_DATO + " ( " +
+                ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                NOMBRE + " TEXT , " +
+                CEDULA + " TEXT , " +
+                TELEFONO + " TEXT , " +
+                CORREO + " TEXT , " +
+                NOMBREJUEGO + " TEXT , " +
+                OPCION + " TEXT , " +
+                FECHA + " TEXT);");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLA_JUEGO);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLA_DATO);
     }
 }
