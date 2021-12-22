@@ -9,6 +9,7 @@ public class Juego {
     private String director;
     private String productor;
     private String tecnologia;
+    private String imagen;
 
     public String getId() {
         return id;
@@ -74,4 +75,11 @@ public class Juego {
         this.tecnologia = tecnologia;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 }

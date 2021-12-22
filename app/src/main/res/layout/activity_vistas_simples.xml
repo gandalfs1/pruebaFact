@@ -7,8 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:weightSum="3"
-    tools:context=".VistasSimples">
-
+    tools:context=".actividades.VistasSimples">
     <ImageView
         android:layout_weight="2"
         android:id="@+id/imgGuardando"
@@ -16,6 +15,7 @@
         android:layout_height="wrap_content"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/bajando_informacion" />
+
     <TextView
         android:layout_weight="1"
         android:textAlignment="center"
