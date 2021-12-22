@@ -1,7 +1,7 @@
 package com.example.pruebafact.modelos;
 
 public class Juego {
-
+    private String id;
     private String titulo;
     private String nombre;
     private String anho;
@@ -9,6 +9,14 @@ public class Juego {
     private String director;
     private String productor;
     private String tecnologia;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTitulo() {
         return titulo;
