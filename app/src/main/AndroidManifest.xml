@@ -16,10 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PruebaFact">
         <activity
-            android:name=".MainActivity"
+            android:name=".actividades.Opciones"
             android:exported="false" />
         <activity
-            android:name=".VistasSimples"
+            android:name=".actividades.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.MostrarJuego"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.VistasSimples"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

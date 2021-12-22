@@ -6,4 +6,5 @@ import com.example.pruebafact.modelos.Juego;
 public interface Vistas {
     void agregarJuego(Juego juego);
     void verJuegos();
+    void consultarPorCedula(String cedula);
 }
