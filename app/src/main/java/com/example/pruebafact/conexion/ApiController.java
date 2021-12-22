@@ -115,7 +115,7 @@ public class ApiController implements Runnable {
 
     private boolean validacionJuego(Juego juego) {
         if (juego.getTitulo() == null || juego.getNombre() == null ||
-                juego.getAnho() == null || juego.getProtagonista() == null ||
+                juego.getAnho() == null || juego.getPrecio() == null ||
                 juego.getDirector() == null || juego.getProductor() == null ||
                 juego.getTecnologia() == null || juego.getImagen() == null) {
             listener.rspListener("{\"response\":\"error en el json, faltan campos\"}", "400");

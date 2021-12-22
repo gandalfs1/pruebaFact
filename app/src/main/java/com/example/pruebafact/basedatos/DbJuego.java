@@ -1,16 +1,7 @@
 package com.example.pruebafact.basedatos;
 
-import static com.example.pruebafact.tools.Constantes.ANHO;
-import static com.example.pruebafact.tools.Constantes.DIRECTOR;
-import static com.example.pruebafact.tools.Constantes.ID;
-import static com.example.pruebafact.tools.Constantes.IMAGEN;
-import static com.example.pruebafact.tools.Constantes.NOMBRE;
-import static com.example.pruebafact.tools.Constantes.PRODUCTOR;
-import static com.example.pruebafact.tools.Constantes.PROTAGONISTA;
-import static com.example.pruebafact.tools.Constantes.TABLA_JUEGO;
-import static com.example.pruebafact.tools.Constantes.TECNOLOGIA;
-import static com.example.pruebafact.tools.Constantes.TITULO;
 
+import static com.example.pruebafact.tools.Constantes.*;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -35,7 +26,7 @@ public class DbJuego extends DbHelper {
         cv.put(TITULO, juego.getTitulo());
         cv.put(NOMBRE, juego.getNombre());
         cv.put(ANHO, juego.getAnho());
-        cv.put(PROTAGONISTA, juego.getProtagonista());
+        cv.put(PRECIO, juego.getPrecio());
         cv.put(DIRECTOR, juego.getDirector());
         cv.put(PRODUCTOR, juego.getProductor());
         cv.put(TECNOLOGIA, juego.getTecnologia());
@@ -62,7 +53,7 @@ public class DbJuego extends DbHelper {
                 juego.setTitulo(cursor.getString(1));
                 juego.setNombre(cursor.getString(2));
                 juego.setAnho(cursor.getString(3));
-                juego.setProtagonista(cursor.getString(4));
+                juego.setPrecio(cursor.getString(4));
                 juego.setDirector(cursor.getString(5));
                 juego.setProductor(cursor.getString(6));
                 juego.setTecnologia(cursor.getString(7));
@@ -87,7 +78,7 @@ public class DbJuego extends DbHelper {
                 juego.setTitulo(cursor.getString(1));
                 juego.setNombre(cursor.getString(2));
                 juego.setAnho(cursor.getString(3));
-                juego.setProtagonista(cursor.getString(4));
+                juego.setPrecio(cursor.getString(4));
                 juego.setDirector(cursor.getString(5));
                 juego.setProductor(cursor.getString(6));
                 juego.setTecnologia(cursor.getString(7));

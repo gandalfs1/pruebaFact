@@ -9,7 +9,7 @@ public class Constantes {
     public static String TITULO = "titulo";
     public static String NOMBRE = "nombre";
     public static String ANHO = "anho";
-    public static String PROTAGONISTA = "protagonista";
+    public static String PRECIO= "precio";
     public static String DIRECTOR = "director";
     public static String PRODUCTOR = "productor";
     public static String TECNOLOGIA = "tecnologia";

@@ -115,6 +115,7 @@
                     android:id="@+id/etCedula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:hint="Cedula" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,6 +127,7 @@
                     android:id="@+id/etTelefono"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:hint="Telefono" />
             </com.google.android.material.textfield.TextInputLayout>
 

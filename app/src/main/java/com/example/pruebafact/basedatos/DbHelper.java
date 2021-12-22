@@ -23,7 +23,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 TITULO + " TEXT , " +
                 NOMBRE + " TEXT , " +
                 ANHO + " TEXT , " +
-                PROTAGONISTA + " TEXT , " +
+                PRECIO + " TEXT , " +
                 DIRECTOR + " TEXT , " +
                 PRODUCTOR + " TEXT , " +
                 TECNOLOGIA + " TEXT ," +

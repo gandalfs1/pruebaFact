@@ -5,7 +5,7 @@ public class Juego {
     private String titulo;
     private String nombre;
     private String anho;
-    private String protagonista;
+    private String precio;
     private String director;
     private String productor;
     private String tecnologia;
@@ -43,12 +43,12 @@ public class Juego {
         this.anho = anho;
     }
 
-    public String getProtagonista() {
-        return protagonista;
+    public String getPrecio() {
+        return precio;
     }
 
-    public void setProtagonista(String protagonista) {
-        this.protagonista = protagonista;
+    public void setPrecio(String precio) {
+        this.precio = precio;
     }
 
     public String getDirector() {

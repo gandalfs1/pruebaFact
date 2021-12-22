@@ -95,7 +95,7 @@ public class VistasSimples extends AppCompatActivity implements Vistas {
     public void consultarPorCedula(String cedula) {
         runOnUiThread(() -> {
             Toast.makeText(this, "consulta", Toast.LENGTH_SHORT).show();
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+           /* getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
             setContentView(R.layout.vista_ver_juego);
             LinearLayout lyDatosCliente = findViewById(R.id.lyDatosCliente);
             lyDatosCliente.setVisibility(View.VISIBLE);
@@ -109,12 +109,14 @@ public class VistasSimples extends AppCompatActivity implements Vistas {
             tvNombreCliente.setText(datos.getNombre());
             tvCedulaCliente.setText(datos.getCedula());
             ArrayList<Datos> listaDatos = dbDatos.leerDatosPorCedula(cedula);
-            tvTotalJurgosCliente.setText(listaDatos.size());
+            tvTotalJurgosCliente.setText(String.valueOf(listaDatos.size()));
 
             AdaptadorDatos adaptadorJuegos = new AdaptadorDatos(this, listaDatos, this);
             rvDatos.setLayoutManager(new GridLayoutManager(this, 2));
-            rvDatos.setAdapter(adaptadorJuegos);
-            //respuestas("llego a ver",200);
+            rvDatos.setAdapter(adaptadorJuegos);*/
+            DbDatos dbDatos = new DbDatos(this);
+            ArrayList<Datos> listaDatos = dbDatos.leerDatosPorCedula(cedula);
+            respuestas("la cedula "+ cedula +" tiene "+ listaDatos.size() + " juegos",200);
         });
     }
 

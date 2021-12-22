@@ -109,7 +109,7 @@ public class MostrarJuego extends AppCompatActivity {
         tvAnho.setText(juego.getAnho());
         tvProductor.setText(juego.getProductor());
         tvTecnologia.setText(juego.getTecnologia());
-        tvProtagonista.setText(juego.getProtagonista());
+        tvProtagonista.setText(juego.getPrecio());
     }
     void inicializaciones(){
         mostrarDatos = findViewById(R.id.mostrarDatos);

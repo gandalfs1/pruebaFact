@@ -71,7 +71,7 @@ public class DbDatos extends DbHelper {
     }
     public Datos leerDatosPorCC(String cedula) {
         String query =
-                "SELECT * FROM " + TABLA_JUEGO + " where " + CEDULA + "='" + cedula + "'";
+                "SELECT * FROM " + TABLA_DATO + " where " + CEDULA + "='" + cedula + "'";
         SQLiteDatabase db = this.getReadableDatabase();
         Datos datos = new Datos();
         Cursor cursor = null;
