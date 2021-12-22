@@ -3,11 +3,15 @@ package com.example.pruebafact.conexion;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.example.pruebafact.interfaces.Vistas;
+
 public class Conexion {
     private static int puertoEstablecido;
     private ConexionPostman webPostman;
+    Vistas vistas;
 
-    public void getInstanceServer(final Context context, int puerto) {
+    public void getInstanceServer(final Context context, int puerto, Vistas vista) {
+        this.vistas = vista;
         new Thread(() -> {
             if (puerto <= 0) {
                 //Toast.makeText(context, "no hay puerto", Toast.LENGTH_SHORT).show();
@@ -38,7 +42,7 @@ public class Conexion {
                 webPostman = null;
             }
             if (webPostman == null) {
-                webPostman = new ConexionPostman(port, context1);
+                webPostman = new ConexionPostman(port, context1, vistas);
             }
             if (!webPostman.isAlive())
                 webPostman.start();

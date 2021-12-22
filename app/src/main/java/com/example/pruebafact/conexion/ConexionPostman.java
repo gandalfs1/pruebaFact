@@ -2,6 +2,7 @@ package com.example.pruebafact.conexion;
 
 import android.content.Context;
 
+import com.example.pruebafact.interfaces.Vistas;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -16,10 +17,12 @@ public class ConexionPostman extends NanoHTTPD {
     private final Context context;
     String response = "";
     int status = 0;
+    Vistas vistas;
 
-    public ConexionPostman(int port, Context context) {
+    public ConexionPostman(int port, Context context, Vistas vista) {
         super(port);
         this.context = context;
+        this.vistas =  vista;
     }
 
     public ConexionPostman(String hostname, int port, Context context) {
@@ -41,7 +44,7 @@ public class ConexionPostman extends NanoHTTPD {
                 body = jsonBody.get("postData");
             }
 
-            new ApiController(context, uri, body, (json, restHttp) -> {
+            new ApiController(vistas,context, uri, body, (json, restHttp) -> {
                 Gson gson = new Gson();
                 response = gson.toJson(json);
                 status = Integer.parseInt(restHttp);
