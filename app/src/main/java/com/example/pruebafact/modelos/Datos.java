@@ -12,6 +12,8 @@ public class Datos {
     private String nombreJuego;
     private String idJuego;
     private Juego listaJuego;
+    private ArrayList<Juego> arrayJuegos;
+
 
 
     public String getNombre() {
@@ -84,5 +86,13 @@ public class Datos {
 
     public void setListaJuego(Juego listaJuego) {
         this.listaJuego = listaJuego;
+    }
+
+    public ArrayList<Juego> getArrayJuegos() {
+        return arrayJuegos;
+    }
+
+    public void setArrayJuegos(ArrayList<Juego> arrayJuegos) {
+        this.arrayJuegos = arrayJuegos;
     }
 }

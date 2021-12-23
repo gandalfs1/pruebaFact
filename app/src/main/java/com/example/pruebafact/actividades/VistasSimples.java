@@ -116,9 +116,10 @@ public class VistasSimples extends AppCompatActivity implements Vistas {
             rvDatos.setLayoutManager(new GridLayoutManager(this, 2));
             rvDatos.setAdapter(adaptadorJuegos);*/
             DbDatos dbDatos = new DbDatos(this);
-            ArrayList<Datos> listaDatos = dbDatos.leerDatosPorCedula(cedula);
+            //ArrayList<Datos> listaDatos = dbDatos.leerDatosPorCedula2(cedula);
             //respuestas("la cedula "+ cedula +" tiene "+ listaDatos.size() + " juegos",200);
-            ApiController.listener.rspListener(listaDatos, "400");
+            //ApiController.listener.rspListener(listaDatos, "400");
+            ApiController.listener.rspListener(dbDatos.leerDatosPorCedula2(cedula), "400");
         });
     }
 

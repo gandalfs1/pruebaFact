@@ -67,8 +67,8 @@ public class MostrarJuego extends AppCompatActivity {
                 datos.setTelefono(etTelefono.getText().toString().trim());
                 datos.setCorreo(etCorre.getText().toString().trim());
                 datos.setNombreJuego(juego.getTitulo());
-                datos.setIdJuego(juego.getId());
                 datos.setOpcion(compra ? COMPRA : PRESTAMO);
+                datos.setIdJuego(juego.getId());
                 datos.setFecha(String.valueOf(c));
                 if (dbDatos.agregarDatos(datos))
                     ApiController.listener.rspListener(datos, "200");

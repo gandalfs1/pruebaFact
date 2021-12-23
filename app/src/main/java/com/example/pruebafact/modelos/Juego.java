@@ -10,6 +10,7 @@ public class Juego {
     private String productor;
     private String tecnologia;
     private String imagen;
+    private String fechaPrestamo;
 
     public String getId() {
         return id;
@@ -81,5 +82,13 @@ public class Juego {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getFechaPrestamo() {
+        return fechaPrestamo;
+    }
+
+    public void setFechaPrestamo(String fechaPrestamo) {
+        this.fechaPrestamo = fechaPrestamo;
     }
 }
