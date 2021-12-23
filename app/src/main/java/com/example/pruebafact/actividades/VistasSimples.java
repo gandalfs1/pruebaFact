@@ -1,12 +1,13 @@
 package com.example.pruebafact.actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,7 @@ import com.example.pruebafact.basedatos.DbJuego;
 import com.example.pruebafact.conexion.ApiController;
 import com.example.pruebafact.conexion.Conexion;
 import com.example.pruebafact.interfaces.Vistas;
+import com.example.pruebafact.modelos.Datos;
 import com.example.pruebafact.modelos.Juego;
 import com.example.pruebafact.modelos.Respuestas;
 
@@ -27,28 +29,20 @@ public class VistasSimples extends AppCompatActivity implements Vistas {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-       initConexion();
+        initConexion();
+    }
+
+    void initConexion() {
+        Conexion conexion = Conexion.getConexion(this, 2022, this);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
-       initConexion();
-    }
-    void initConexion(){
-        Conexion conexion = Conexion.getConexion(this, 2022, this);
-    }
-    @Override
     public void agregarJuego(Juego juego) {
         runOnUiThread(() -> {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
             setContentView(R.layout.activity_vistas_simples);
             dbJuego = new DbJuego(this);
-           dbJuego.agregarJuego(juego);
+            dbJuego.agregarJuego(juego);
             TextView tvGuardando = findViewById(R.id.tvGuardando);
             tvGuardando.setText("Agregando juego");
             respuestas("agregado exitosamente", 200);
@@ -60,7 +54,7 @@ public class VistasSimples extends AppCompatActivity implements Vistas {
         new Handler(getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
                 setContentView(R.layout.activity_main);
             }
         }, 5000);
@@ -69,7 +63,7 @@ public class VistasSimples extends AppCompatActivity implements Vistas {
     @Override
     public void verJuegos() {
         runOnUiThread(() -> {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
             setContentView(R.layout.vista_ver_juego);
             RecyclerView rvJuegos = findViewById(R.id.rvJuegos);
             LinearLayout lyDatosCliente = findViewById(R.id.lyDatosCliente);
@@ -82,21 +76,34 @@ public class VistasSimples extends AppCompatActivity implements Vistas {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        setContentView(R.layout.activity_main);
+    }
+
+    @Override
     public void consultarPorCedula(String cedula) {
         runOnUiThread(() -> {
             DbDatos dbDatos = new DbDatos(this);
-            ApiController.listener.rspListener(dbDatos.leerDatosPorCedula(cedula), "400");
+            Datos datos = dbDatos.leerDatosPorCedula(cedula);
+            if (datos.getCedula() != null)
+                ApiController.listener.rspListener(datos, "200");
+            else
+               respuestas("no se encontraron datos",400);
+
+
         });
     }
 
     @Override
     public void actualizar(Juego juego) {
         runOnUiThread(() -> {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
             setContentView(R.layout.actualizando);
             dbJuego = new DbJuego(this);
             dbJuego.actualizarPrecio(juego);
-            respuestas("actualizado con exito", 400);
+            respuestas("actualizado con exito", 200);
             endView();
         });
     }

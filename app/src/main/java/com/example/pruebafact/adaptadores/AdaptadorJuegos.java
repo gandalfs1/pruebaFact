@@ -51,7 +51,7 @@ public class AdaptadorJuegos extends RecyclerView.Adapter<AdaptadorJuegos.ViewMy
         holder.mainLayoutJuego.setOnClickListener(v -> {
             Intent intent = new Intent(context, MostrarJuego.class);
             intent.putExtra("position",String.valueOf(juego.getId()));
-            activity.startActivity(intent);
+            activity.startActivityForResult(intent,0);
         });
     }
 

@@ -6,8 +6,8 @@ import android.widget.Toast;
 import com.example.pruebafact.interfaces.Vistas;
 
 public class Conexion {
-    private static int puertoEstablecido;
-    private static ConexionPostman webPostman;
+    int puertoEstablecido;
+    ConexionPostman webPostman;
     Vistas vistas;
 
     private static Conexion conexion;

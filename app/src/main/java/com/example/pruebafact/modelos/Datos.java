@@ -11,7 +11,8 @@ public class Datos {
     private String fecha;
     private String nombreJuego;
     private String idJuego;
-    private ArrayList<Juego> arrayJuegos;
+    private String diasParaEntregar;
+    private ArrayList<Juego> juegos;
 
 
 
@@ -79,11 +80,19 @@ public class Datos {
         this.idJuego = idJuego;
     }
 
-    public ArrayList<Juego> getArrayJuegos() {
-        return arrayJuegos;
+    public String getDiasParaEntregar() {
+        return diasParaEntregar;
     }
 
-    public void setArrayJuegos(ArrayList<Juego> arrayJuegos) {
-        this.arrayJuegos = arrayJuegos;
+    public void setDiasParaEntregar(String diasParaEntregar) {
+        this.diasParaEntregar = diasParaEntregar;
+    }
+
+    public ArrayList<Juego> getJuegos() {
+        return juegos;
+    }
+
+    public void setJuegos(ArrayList<Juego> juegos) {
+        this.juegos = juegos;
     }
 }

@@ -1,9 +1,9 @@
 package com.example.pruebafact.actividades;
 
 
-import static com.example.pruebafact.tools.Constantes.*;
+import static com.example.pruebafact.tools.Constantes.COMPRA;
+import static com.example.pruebafact.tools.Constantes.PRESTAMO;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -25,6 +25,7 @@ import com.example.pruebafact.modelos.Juego;
 import com.example.pruebafact.modelos.Respuestas;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -35,16 +36,16 @@ public class MostrarJuego extends AppCompatActivity {
     DbDatos dbDatos;
     Juego juego;
     Datos datos;
-    TextView tvTitulo,tvNombre,tvAnho,tvProductor,tvTecnologia,tvProtagonista;
-    Button btnComprar,btnPrestar, btnRegistrar;
+    TextView tvTitulo, tvNombre, tvAnho, tvProductor, tvTecnologia, tvProtagonista;
+    Button btnComprar, btnPrestar, btnRegistrar;
     LinearLayout mostrarDatos, lyOpciones, info;
-    TextInputEditText etNombre,etCedula, etTelefono, etCorre;
-    boolean compra= false;
+    TextInputEditText etNombre, etCedula, etTelefono, etCorre;
+    boolean compra = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_mostrar_juego);
         inicializaciones();
         mostrarDatos();
@@ -53,15 +54,16 @@ public class MostrarJuego extends AppCompatActivity {
     }
 
     private void capturarDatos() {
-        btnRegistrar.setOnClickListener(v ->{
-            if (etNombre.getText().toString().trim().isEmpty() || etCedula.getText().toString().trim().isEmpty() || etTelefono.getText().toString().trim().isEmpty() || etCorre.getText().toString().trim().isEmpty()){
+        btnRegistrar.setOnClickListener(v -> {
+            if (etNombre.getText().toString().trim().isEmpty() || etCedula.getText().toString().trim().isEmpty() || etTelefono.getText().toString().trim().isEmpty() || etCorre.getText().toString().trim().isEmpty()) {
                 Toast.makeText(this, "LLenar Datos", Toast.LENGTH_SHORT).show();
-            }
-            else{
+            } else {
                 Respuestas respuestas = new Respuestas();
-                respuestas.setMessage("Error al "+ (compra ? COMPRA : PRESTAMO));
+                respuestas.setMessage("Error al " + (compra ? COMPRA : PRESTAMO));
                 respuestas.setStatusCode(200);
-                Date c = Calendar.getInstance().getTime();
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                Date fechaActual = Calendar.getInstance().getTime();
+                String fechaPrestamo = sdf.format(fechaActual);
                 datos.setNombre(etNombre.getText().toString());
                 datos.setCedula(etCedula.getText().toString().trim());
                 datos.setTelefono(etTelefono.getText().toString().trim());
@@ -69,14 +71,15 @@ public class MostrarJuego extends AppCompatActivity {
                 datos.setNombreJuego(juego.getTitulo());
                 datos.setOpcion(compra ? COMPRA : PRESTAMO);
                 datos.setIdJuego(juego.getId());
-                datos.setFecha(String.valueOf(c));
+                datos.setFecha(fechaPrestamo);
                 if (dbDatos.agregarDatos(datos))
                     ApiController.listener.rspListener(datos, "200");
                 else
                     ApiController.listener.rspListener(respuestas, "400");
 
-                startActivity(new Intent(this,VistasSimples.class));
-
+                //startActivity(new Intent(this,VistasSimples.class));
+                setResult(1);
+                finish();
             }
         });
 
@@ -85,14 +88,14 @@ public class MostrarJuego extends AppCompatActivity {
     private void opciones() {
 
         btnComprar.setText(COMPRA);
-        btnComprar.setOnClickListener(v ->{
+        btnComprar.setOnClickListener(v -> {
             lyOpciones.setVisibility(View.VISIBLE);
             info.setVisibility(View.GONE);
             btnRegistrar.setText(COMPRA);
             compra = true;
         });
         btnPrestar.setText(PRESTAMO);
-        btnPrestar.setOnClickListener(v ->{
+        btnPrestar.setOnClickListener(v -> {
             lyOpciones.setVisibility(View.VISIBLE);
             info.setVisibility(View.GONE);
             btnRegistrar.setText(PRESTAMO);
@@ -113,7 +116,8 @@ public class MostrarJuego extends AppCompatActivity {
         tvTecnologia.setText(juego.getTecnologia());
         tvProtagonista.setText(juego.getPrecio());
     }
-    void inicializaciones(){
+
+    void inicializaciones() {
         mostrarDatos = findViewById(R.id.mostrarDatos);
         lyOpciones = findViewById(R.id.lyOpciones);
         info = findViewById(R.id.info);
