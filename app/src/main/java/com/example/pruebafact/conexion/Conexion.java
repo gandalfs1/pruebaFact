@@ -24,7 +24,6 @@ public class Conexion {
         this.vistas = vista;
         new Thread(() -> {
             if (puerto <= 0) {
-                //Toast.makeText(context, "no hay puerto", Toast.LENGTH_SHORT).show();
                 pararServicio();
                 return;
             }

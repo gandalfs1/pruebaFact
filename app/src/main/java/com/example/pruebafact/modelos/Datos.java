@@ -11,7 +11,6 @@ public class Datos {
     private String fecha;
     private String nombreJuego;
     private String idJuego;
-    private Juego listaJuego;
     private ArrayList<Juego> arrayJuegos;
 
 
@@ -78,14 +77,6 @@ public class Datos {
 
     public void setIdJuego(String idJuego) {
         this.idJuego = idJuego;
-    }
-
-    public Juego getListaJuego() {
-        return listaJuego;
-    }
-
-    public void setListaJuego(Juego listaJuego) {
-        this.listaJuego = listaJuego;
     }
 
     public ArrayList<Juego> getArrayJuegos() {

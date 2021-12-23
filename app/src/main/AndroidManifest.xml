@@ -16,12 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PruebaFact">
         <activity
-            android:name=".actividades.Opciones"
-            android:exported="false" />
-        <activity
-            android:name=".actividades.MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".actividades.MostrarJuego"
             android:exported="false" />
         <activity

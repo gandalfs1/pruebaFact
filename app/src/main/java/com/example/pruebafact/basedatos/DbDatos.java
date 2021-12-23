@@ -1,16 +1,6 @@
 package com.example.pruebafact.basedatos;
 
-import static com.example.pruebafact.tools.Constantes.CEDULA;
-import static com.example.pruebafact.tools.Constantes.CORREO;
-import static com.example.pruebafact.tools.Constantes.FECHA;
-import static com.example.pruebafact.tools.Constantes.ID;
-import static com.example.pruebafact.tools.Constantes.ID_DATO;
-import static com.example.pruebafact.tools.Constantes.NOMBRE;
-import static com.example.pruebafact.tools.Constantes.NOMBREJUEGO;
-import static com.example.pruebafact.tools.Constantes.OPCION;
-import static com.example.pruebafact.tools.Constantes.TABLA_DATO;
-import static com.example.pruebafact.tools.Constantes.TABLA_JUEGO;
-import static com.example.pruebafact.tools.Constantes.TELEFONO;
+import static com.example.pruebafact.tools.Constantes.*;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -47,33 +37,7 @@ public class DbDatos extends DbHelper {
         return db.insert(TABLA_DATO, null, cv) != -1;
     }
 
-    public ArrayList<Datos> leerDatosPorCedula(String cedula) {
-        ArrayList<Datos> lista = new ArrayList<>();
-        String query =
-                "SELECT * FROM " + TABLA_DATO + " where " + CEDULA + " = '" + cedula + "'";
-        SQLiteDatabase db = this.getReadableDatabase();
-        DbJuego dbJuego = new DbJuego(context);
-        Cursor cursor = null;
-        if (db != null) {
-            cursor = db.rawQuery(query, null);
-            while (cursor.moveToNext()) {
-                Datos datos = new Datos();
-                datos.setNombre(cursor.getString(1));
-                datos.setCedula(cursor.getString(2));
-                datos.setTelefono(cursor.getString(3));
-                datos.setCorreo(cursor.getString(4));
-                datos.setNombreJuego(cursor.getString(5));
-                datos.setOpcion(cursor.getString(6));
-                datos.setFecha(cursor.getString(7));
-                datos.setIdJuego(cursor.getString(8));
-                datos.setListaJuego(dbJuego.leerJuegosPorId(cursor.getString(8)));
-                lista.add(datos);
-            }
-        }
-        return lista;
-    }
-
-    public Datos leerDatosPorCedula2(String cedula) {
+    public Datos leerDatosPorCedula(String cedula) {
         ArrayList<Juego> lista = new ArrayList<>();
         String query =
                 "SELECT * FROM " + TABLA_DATO + " where " + CEDULA + " = '" + cedula + "'";
@@ -90,39 +54,10 @@ public class DbDatos extends DbHelper {
                 datos.setCorreo(cursor.getString(4));
                 datos.setNombreJuego(cursor.getString(5));
                 datos.setOpcion(cursor.getString(6));
-                //datos.setFecha(cursor.getString(7));
-                // datos.setIdJuego(cursor.getString(8));
-                //datos.setListaJuego(dbJuego.leerJuegosPorId(cursor.getString(8)));
-                //lista.add(datos);
                 Juego juego = dbJuego.leerJuegosPorId(cursor.getString(8));
                 juego.setFechaPrestamo(cursor.getString(7));
                 lista.add(juego);
                 datos.setArrayJuegos(lista);
-            }
-
-
-        }
-        return datos;
-    }
-
-
-    public Datos leerDatosPorCC(String cedula) {
-        String query =
-                "SELECT * FROM " + TABLA_DATO + " where " + CEDULA + "='" + cedula + "'";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Datos datos = new Datos();
-        Cursor cursor = null;
-        if (db != null) {
-            cursor = db.rawQuery(query, null);
-            while (cursor.moveToNext()) {
-                datos.setNombre(cursor.getString(1));
-                datos.setCedula(cursor.getString(2));
-                datos.setTelefono(cursor.getString(3));
-                datos.setCorreo(cursor.getString(4));
-                datos.setNombreJuego(cursor.getString(5));
-                datos.setOpcion(cursor.getString(6));
-                datos.setFecha(cursor.getString(7));
-
             }
         }
         return datos;
