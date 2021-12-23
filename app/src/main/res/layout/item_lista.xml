@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:background="@drawable/border2"
             android:orientation="vertical">
 
             <TextView
@@ -41,7 +42,12 @@
                 android:text="Super Mario"
                 android:textAlignment="center"
                 android:textColor="@color/texto"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
+            <View
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#191717"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,6 +63,10 @@
                     android:text="Mario"
                     android:textAlignment="center"
                     android:textColor="@color/texto" />
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#040404"/>
 
                 <TextView
                     android:id="@+id/tvAnhoLista"
@@ -68,6 +78,9 @@
                     android:textColor="@color/texto" />
 
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
 
         </LinearLayout>
 
