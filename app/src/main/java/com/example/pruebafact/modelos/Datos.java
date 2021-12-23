@@ -10,7 +10,9 @@ public class Datos {
     private String opcion;
     private String fecha;
     private String nombreJuego;
-    private ArrayList<Juego> listaJuego;
+    private String idJuego;
+    private Juego listaJuego;
+
 
     public String getNombre() {
         return nombre;
@@ -68,11 +70,19 @@ public class Datos {
         this.nombreJuego = nombreJuego;
     }
 
-    public ArrayList<Juego> getListaJuego() {
+    public String getIdJuego() {
+        return idJuego;
+    }
+
+    public void setIdJuego(String idJuego) {
+        this.idJuego = idJuego;
+    }
+
+    public Juego getListaJuego() {
         return listaJuego;
     }
 
-    public void setListaJuego(ArrayList<Juego> listaJuego) {
+    public void setListaJuego(Juego listaJuego) {
         this.listaJuego = listaJuego;
     }
 }

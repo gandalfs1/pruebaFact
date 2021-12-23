@@ -7,4 +7,5 @@ public interface Vistas {
     void agregarJuego(Juego juego);
     void verJuegos();
     void consultarPorCedula(String cedula);
+    void actualizar(Juego juego);
 }

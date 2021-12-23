@@ -17,6 +17,7 @@ public class Constantes {
 
     //tabla de datos
     public static String TABLA_DATO = "tabla_dato";
+    public static String ID_DATO = "id_dato";
     public static String CEDULA = "cedula";
     public static String TELEFONO = "telefono";
     public static String NOMBREJUEGO = "nombre_juego";

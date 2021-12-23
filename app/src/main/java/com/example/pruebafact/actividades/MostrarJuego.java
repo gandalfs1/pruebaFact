@@ -60,16 +60,18 @@ public class MostrarJuego extends AppCompatActivity {
             else{
                 Respuestas respuestas = new Respuestas();
                 respuestas.setMessage("Error al "+ (compra ? COMPRA : PRESTAMO));
+                respuestas.setStatusCode(200);
                 Date c = Calendar.getInstance().getTime();
                 datos.setNombre(etNombre.getText().toString());
                 datos.setCedula(etCedula.getText().toString().trim());
                 datos.setTelefono(etTelefono.getText().toString().trim());
                 datos.setCorreo(etCorre.getText().toString().trim());
                 datos.setNombreJuego(juego.getTitulo());
+                datos.setIdJuego(juego.getId());
                 datos.setOpcion(compra ? COMPRA : PRESTAMO);
                 datos.setFecha(String.valueOf(c));
                 if (dbDatos.agregarDatos(datos))
-                    ApiController.listener.rspListener(datos, "400");
+                    ApiController.listener.rspListener(datos, "200");
                 else
                     ApiController.listener.rspListener(respuestas, "400");
 

@@ -7,8 +7,18 @@ import com.example.pruebafact.interfaces.Vistas;
 
 public class Conexion {
     private static int puertoEstablecido;
-    private ConexionPostman webPostman;
+    private static ConexionPostman webPostman;
     Vistas vistas;
+
+    private static Conexion conexion;
+
+    public static Conexion getConexion(final Context context, int puerto, Vistas vista) {
+        if (conexion == null){
+            conexion = new Conexion();
+            conexion.getInstanceServer(context, puerto, vista);
+        }
+       return conexion;
+    }
 
     public void getInstanceServer(final Context context, int puerto, Vistas vista) {
         this.vistas = vista;

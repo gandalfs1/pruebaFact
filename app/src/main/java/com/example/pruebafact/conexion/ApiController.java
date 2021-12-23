@@ -77,8 +77,27 @@ public class ApiController implements Runnable {
             case "/consultar":
                 procesarConsulta(json);
                 break;
+            case "/actualizar":
+                procesarActualizar(json);
+                break;
         }
 
+
+    }
+
+    private void procesarActualizar(JSONObject json) {
+        Juego juego = gson.fromJson(json.toString(), Juego.class);
+        if (validacionActualizar(juego))
+           vistas.actualizar(juego);
+
+    }
+
+    private boolean validacionActualizar(Juego juego) {
+        if (juego.getId().isEmpty() || juego.getPrecio().isEmpty()) {
+            listener.rspListener("{\"response\":\"error en el json, faltan campos\"}", "400");
+            return false;
+        }
+        return true;
 
     }
 
@@ -90,13 +109,10 @@ public class ApiController implements Runnable {
     }
 
     private boolean validacionConsulta(Datos datos) {
-
-
         if (datos.getCedula().isEmpty()) {
             listener.rspListener("{\"response\":\"error en el json, faltan campos\"}", "400");
             return false;
         }
-
         return true;
     }
 
