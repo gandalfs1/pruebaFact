@@ -88,4 +88,18 @@ public class DbJuego extends DbHelper {
         }
         return juego;
     }
+
+    public boolean actualizarPrecio(Juego juego){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(PRECIO, juego.getPrecio());
+
+        long result = db.update(TABLA_JUEGO, cv, ID+"=?", new String[]{juego.getId()});
+        if (result == -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

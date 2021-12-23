@@ -4,6 +4,7 @@ import static com.example.pruebafact.tools.Constantes.CEDULA;
 import static com.example.pruebafact.tools.Constantes.CORREO;
 import static com.example.pruebafact.tools.Constantes.FECHA;
 import static com.example.pruebafact.tools.Constantes.ID;
+import static com.example.pruebafact.tools.Constantes.ID_DATO;
 import static com.example.pruebafact.tools.Constantes.NOMBRE;
 import static com.example.pruebafact.tools.Constantes.NOMBREJUEGO;
 import static com.example.pruebafact.tools.Constantes.OPCION;
@@ -24,8 +25,10 @@ import com.example.pruebafact.modelos.Juego;
 import java.util.ArrayList;
 
 public class DbDatos extends DbHelper {
+    Context context;
     public DbDatos(@Nullable Context context) {
         super(context);
+        this.context = context;
     }
 
     public boolean agregarDatos(Datos datos) {
@@ -39,11 +42,9 @@ public class DbDatos extends DbHelper {
         cv.put(NOMBREJUEGO, datos.getNombreJuego());
         cv.put(OPCION, datos.getOpcion());
         cv.put(FECHA, datos.getFecha());
+        cv.put(ID, datos.getIdJuego());
 
-        if (db.insert(TABLA_DATO, null, cv) != 1) {
-            return true;
-        }
-        return false;
+        return db.insert(TABLA_DATO, null, cv) != -1;
     }
 
     public ArrayList<Datos> leerDatosPorCedula(String cedula) {
@@ -51,7 +52,7 @@ public class DbDatos extends DbHelper {
         String query =
                 "SELECT * FROM " + TABLA_DATO + " where " + CEDULA + " = '" + cedula + "'";
         SQLiteDatabase db = this.getReadableDatabase();
-
+        DbJuego dbJuego = new DbJuego(context);
         Cursor cursor = null;
         if (db != null) {
             cursor = db.rawQuery(query, null);
@@ -64,6 +65,8 @@ public class DbDatos extends DbHelper {
                 datos.setNombreJuego(cursor.getString(5));
                 datos.setOpcion(cursor.getString(6));
                 datos.setFecha(cursor.getString(7));
+                datos.setIdJuego(cursor.getString(8));
+                datos.setListaJuego(dbJuego.leerJuegosPorId(cursor.getString(8)));
                 lista.add(datos);
             }
         }

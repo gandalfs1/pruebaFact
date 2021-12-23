@@ -30,14 +30,15 @@ public class DbHelper extends SQLiteOpenHelper {
                 IMAGEN + " TEXT);");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_DATO + " ( " +
-                ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                ID_DATO + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
                 NOMBRE + " TEXT , " +
                 CEDULA + " TEXT , " +
                 TELEFONO + " TEXT , " +
                 CORREO + " TEXT , " +
                 NOMBREJUEGO + " TEXT , " +
                 OPCION + " TEXT , " +
-                FECHA + " TEXT);");
+                FECHA + " TEXT ," +
+                ID+ " TEXT);");
 
     }
 

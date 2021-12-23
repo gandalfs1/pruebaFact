@@ -36,9 +36,8 @@ public class VistasSimples extends AppCompatActivity implements Vistas {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        dbJuego = new DbJuego(this);
-        Conexion conexion = new Conexion();
-        conexion.getInstanceServer(this, 2022, this);
+       initConexion();
+        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -46,21 +45,23 @@ public class VistasSimples extends AppCompatActivity implements Vistas {
         super.onResume();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        Toast.makeText(this, "on Resume", Toast.LENGTH_SHORT).show();
+       initConexion();
     }
-
+    void initConexion(){
+        Conexion conexion = Conexion.getConexion(this, 2022, this);
+        //conexion.getInstanceServer(this, 2022, this);
+    }
     @Override
     public void agregarJuego(Juego juego) {
         runOnUiThread(() -> {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
             setContentView(R.layout.activity_vistas_simples);
             dbJuego = new DbJuego(this);
-            if (dbJuego.agregarJuego(juego)) {
-                TextView tvGuardando = findViewById(R.id.tvGuardando);
-                tvGuardando.setText("Agregando juego");
-                respuestas("agregado exitosamente", 200);
-            } else {
-                respuestas("agregado fallido", 200);
-            }
+           dbJuego.agregarJuego(juego);
+            TextView tvGuardando = findViewById(R.id.tvGuardando);
+            tvGuardando.setText("Agregando juego");
+            respuestas("agregado exitosamente", 200);
             endView();
         });
     }
@@ -116,7 +117,21 @@ public class VistasSimples extends AppCompatActivity implements Vistas {
             rvDatos.setAdapter(adaptadorJuegos);*/
             DbDatos dbDatos = new DbDatos(this);
             ArrayList<Datos> listaDatos = dbDatos.leerDatosPorCedula(cedula);
-            respuestas("la cedula "+ cedula +" tiene "+ listaDatos.size() + " juegos",200);
+            //respuestas("la cedula "+ cedula +" tiene "+ listaDatos.size() + " juegos",200);
+            ApiController.listener.rspListener(listaDatos, "400");
+        });
+    }
+
+    @Override
+    public void actualizar(Juego juego) {
+        runOnUiThread(() -> {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            setContentView(R.layout.actualizando);
+            dbJuego = new DbJuego(this);
+            dbJuego.actualizarPrecio(juego);
+            respuestas("actualizado con exito", 400);
+            endView();
+
         });
     }
 

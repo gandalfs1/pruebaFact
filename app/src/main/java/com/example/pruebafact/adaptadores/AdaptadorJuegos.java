@@ -43,7 +43,7 @@ public class AdaptadorJuegos extends RecyclerView.Adapter<AdaptadorJuegos.ViewMy
     public void onBindViewHolder(@NonNull ViewMyHolder holder, int position) {
         Juego juego = listaJuegos.get(position);
         holder.tvTituloLista.setText(String.valueOf(juego.getTitulo()));
-        holder.tvNombreLista.setText(String.valueOf(juego.getNombre()));
+        holder.tvNombreLista.setText(String.valueOf(juego.getPrecio()));
         holder.tvAnhoLista.setText(String.valueOf(juego.getAnho()));
         Glide.with(context)
                 .load(String.valueOf(juego.getImagen()))
