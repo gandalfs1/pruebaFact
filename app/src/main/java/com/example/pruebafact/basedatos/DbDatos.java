@@ -1,14 +1,6 @@
 package com.example.pruebafact.basedatos;
 
-import static com.example.pruebafact.tools.Constantes.CEDULA;
-import static com.example.pruebafact.tools.Constantes.CORREO;
-import static com.example.pruebafact.tools.Constantes.FECHA;
-import static com.example.pruebafact.tools.Constantes.ID;
-import static com.example.pruebafact.tools.Constantes.NOMBRE;
-import static com.example.pruebafact.tools.Constantes.NOMBREJUEGO;
-import static com.example.pruebafact.tools.Constantes.OPCION;
-import static com.example.pruebafact.tools.Constantes.TABLA_DATO;
-import static com.example.pruebafact.tools.Constantes.TELEFONO;
+import static com.example.pruebafact.tools.Constantes.*;
 
 import android.content.ContentValues;
 import android.content.Context;
